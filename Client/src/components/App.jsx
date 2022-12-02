@@ -1,6 +1,6 @@
 import axios from 'axios';
 import * as React from 'react';
-import Ratings from './RnR/ratings.jsx';
+import MainRnR from './RnR/MainRnR.jsx';
 
 const { useState, useEffect } = React;
 
@@ -51,7 +51,7 @@ export default function App() {
   return (
     <div>
       <h1>test</h1>
-      <Ratings stars={stars} rating={rating} />
+      <MainRnR rating={rating} stars={stars} />
     </div>
   );
 }
