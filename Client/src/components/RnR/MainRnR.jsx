@@ -1,25 +1,21 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Ratings from './Ratings.jsx';
 import Reviews from './Reviews.jsx';
 
-const MainRnR = ({ rating, stars }) => (
+const MainRnR = ({ rating, reviews, productID }) => {
+
+  return (
   <>
     <h1> Ratings & Reviews </h1>
 
     <div>
-      <Ratings  rating={rating} stars={stars} />
+      <Ratings rating={rating} reviews={reviews} />
     </div>
 
     <div>
-      <Reviews />
+      <Reviews reviews={reviews} rating={rating} />
     </div>
   </>
-);
-
-MainRnR.propTypes = {
-  rating: PropTypes.number.isRequired,
-  stars: PropTypes.array.isRequired,
-};
+)};
 
 export default MainRnR;

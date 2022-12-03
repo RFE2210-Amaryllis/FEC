@@ -28,6 +28,22 @@ app.get('/products', (req, res) => {
     });
 });
 
+// get reviews for a certain product
+app.get('/reviews', (req, res) => {
+  const { product_id } = req.query;
+  axios.get(`${url}reviews?product_id=${product_id}`, {
+    headers: {
+      Authorization: `${key}`,
+    },
+  })
+    .then((response) => {
+      res.json(response.data);
+    })
+    .catch((error) => {
+      console.error('Error in server line 43');
+    });
+})
+
 const port = process.env.PORT;
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);

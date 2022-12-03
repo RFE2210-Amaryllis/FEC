@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import ReviewTiles from './ReviewTiles.jsx';
 
-const Reviews = () => (
+const Reviews = ({reviews}) => {
+
+  return (
   <>
     <h1> Reviews </h1>
-    <div> Reviews Placeholder </div>
+    <ReviewTiles reviews={reviews}/>
   </>
-);
+)};
 
 export default Reviews;

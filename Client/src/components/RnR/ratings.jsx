@@ -1,16 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import Stars from './Stars.jsx';
 
-const Ratings = ({ rating, stars }) => (
+const Ratings = ({ rating, stars }) => {
+
+  return (
   <div>
     <p>{rating}</p>
-    <p>{stars.length}</p>
+    <Stars rating={rating} stars={stars} />
   </div>
-);
-
-Ratings.propTypes = {
-  rating: PropTypes.number.isRequired,
-  stars: PropTypes.array.isRequired,
-};
+)};
 
 export default Ratings;
