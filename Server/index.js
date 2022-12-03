@@ -12,10 +12,13 @@ const code = process.env.CAMPUS_CODE;
 const key = process.env.KEY;
 const url = `https://app-hrsei-api.herokuapp.com/api/fec2/${code}/`;
 
-// The below request gets a list of products
-app.get('/products', (req, res) => {
-  const { page, count } = req.query;
-  axios.get(`${url}products?page=${page}&count=${count}`, {
+
+// ------------------- APP.JSX -------------------------- //
+
+// The below request get product detail
+app.get('/products/:product_id', (req, res) => {
+  const { id } = req.query;
+  axios.get(`${url}products/${id}`, {
     headers: {
       Authorization: `${key}`,
     },
@@ -24,9 +27,47 @@ app.get('/products', (req, res) => {
       res.json(response.data);
     })
     .catch((error) => {
-      console.error('Error in server line 25', error);
+      console.error('Error getting product data request', error);
     });
 });
+
+//Getting review meta
+app.get('/reviews/meta', (req, res) => {
+  const { id } = req.query;
+  axios.get(`${url}reviews/meta?product_id=${id}`, {
+    headers: {
+      Authorization: `${key}`,
+    },
+  })
+    .then((response) => {
+      res.json(response.data);
+    })
+    .catch((error) => {
+      console.error('Error on Getting review meta request', error);
+    });
+});
+
+
+// ----------------Product Styles Request--------------------------- //
+app.get('/products/:product_id/styles', (req, res) => {
+  const { id } = req.query;
+  axios.get(`${url}products/${id}/styles`, {
+    headers: {
+      Authorization: `${key}`,
+    },
+  })
+    .then((response) => {
+      res.json(response.data);
+    })
+    .catch((error) => {
+      console.error('Error in Product styles request', error);
+      res.sendStatus(404).end()
+    });
+});
+//--------------------------------------------------------------//
+
+
+
 
 // get reviews for a certain product
 app.get('/reviews', (req, res) => {

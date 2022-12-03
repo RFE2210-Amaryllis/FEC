@@ -1,15 +1,18 @@
 import axios from 'axios';
 import * as React from 'react';
 import MainRnR from './RnR/MainRnR.jsx';
+import MainView from './ProductDetails/MainView.jsx'
 
 const { useState, useEffect } = React;
 
 export default function App() {
-  const [data, setData] = useState([]);
   const [productID, setProductID] = useState('37312');
   const [rating, setRating] = useState(0);
   const [reviews, setReviews] = useState([]);
-
+  const [product, setProduct] = useState(37311);
+  const [productData, setProductData] = useState({});
+  const [metaData, setMetaData] = useState({});
+  
   const averageRating = (arrOfRatings) => {
     var result = 0;
 
@@ -33,14 +36,55 @@ export default function App() {
         console.log('Error retrieving reviews');
       })
   }
+  
+  const getProductData = (productId) => {
+    axios.get('/products/:product_id', {
+      params: {
+        'id': productId
+      },
+    })
+    .then((response) => {
+      setStars(createStars(rating));
+      let newProduct = response.data
+      setProductData(newProduct)
+    })
+    .catch((error) => {
+      console.log('Error in client from get request', error);
+    });
+  }
+
+
+  const getReviewMeta = (productId) => {
+    axios.get('/reviews/meta', {
+      params: {
+        'id': productId
+      },
+    })
+    .then((response) => {
+      console.log('Succesful request for meta data');
+      setMetaData(response.data);
+    })
+    .catch((error) => {
+      console.log('Error in client from get request', error);
+    });
+  }
+
 
   useEffect(() => {
+    getProductData(product);
+    getReviewMeta(product);
     getReviews(productID);
+    //getreviews
+    //get question stuff
   }, []);
 
   return (
-    <div>
-      <h1>test</h1>
+    <div id= 'app'>
+      <MainView
+        product={product}
+        productData={productData}
+        reviewMeta={metaData} />
+
       <MainRnR rating={rating} reviews={reviews} productID={productID}/>
     </div>
   );
