@@ -31,6 +31,6 @@ If you get a divergent branch error:
 
     git config pull.rebase false
 
-git pull upstream main
+Push changes to your own branch:
 
     git push origin <branchName>
