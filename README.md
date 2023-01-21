@@ -6,7 +6,7 @@ A front-end team project to build an e-commerce product details page.
   <img src="https://contrib.rocks/image?repo=RFE2210-Amaryllis/Project-Atelier" />
 </a>
 
-   •[Tim Mussack](https://github.com/timmussack) - Questions and Answers<br />
+   •[Tim Mussack](https://github.com/timmussack) - Questions & Answers<br />
    •[Joe Lin](https://github.com/joelinnn) - Ratings & Reviews<br />
    •[Darrien Willig](https://github.com/darrienwillig) - Product Overview<br />
 
